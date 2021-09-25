@@ -1,0 +1,117 @@
+
+
+<style>
+.label_custom{
+    color:#E8EBF7;
+}
+
+</style>
+
+
+<body style="background-color: #262626;">
+
+<div class="container mt-5"> 
+
+
+<div id="encrypt">
+
+    <div class="mb-3">
+      <label for="chave" class="form-label label_custom">Digite a chave:</label>
+      <input type="text" class="form-control" id="campo_chave" aria-describedby="Chave">
+    </div>
+
+  <div class="mb-3">
+    <label for="mensagem" class="form-label label_custom">Digite a mensagem a ser criptografada:</label>
+    <input type="text" class="form-control" id="campo_mensagem" aria-describedby="Chave">
+  </div>
+
+    <div class="mb-3">
+      <label for="resultado" class="form-label label_custom">Resultado:</label>
+      <input type="text" class="form-control" id="campo_resultado" aria-describedby="Chave">
+    </div>
+
+
+    <button type="button" id="submit_encrypt" class="btn btn-primary">Encrypt</button>
+
+
+  </div>
+
+<br>
+<br>
+
+  <div id="DECRYPT">
+
+    <div class="mb-3">
+      <label for="chave" class="form-label label_custom">Digite a chave:</label>
+      <input type="text" class="form-control" id="campo_chave_secreta" aria-describedby="Chave">
+    </div>
+
+  <div class="mb-3">
+    <label for="mensagem" class="form-label label_custom">Digite a mensagem a ser descriptografada:</label>
+    <input type="text" class="form-control" id="campo_mensagem_criptografada" aria-describedby="Chave">
+  </div>
+
+    <div class="mb-3">
+      <label for="resultado" class="form-label label_custom">Resultado:</label>
+      <input type="text" class="form-control" id="campo_resultado_descriptografado" aria-describedby="Chave">
+    </div>
+
+
+    <button type="button" id="submit_decrypt" class="btn btn-success">Decrypt</button>
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+</body>
+
+
+
+<script> 
+
+$('#submit_encrypt').click(function(){
+    
+    chave = $('#campo_chave').val();
+    mensagem = $('#campo_mensagem').val();
+
+    $.ajax({
+        method: "POST",
+        url: "/encrypt",
+        data: { chave: chave, mensagem: mensagem }
+    })
+    
+
+
+})
+
+
+
+$('#submit_decrypt').click(function(){
+    
+    chave = $('#campo_chave_secreta').val();
+    mensagem = $('#campo_mensagem_criptografada').val();
+
+    $.ajax({
+        method: "POST",
+        url: "/decrypt",
+        data: { chave: chave, mensagem: mensagem }
+    })
+    
+
+
+})
+
+
+
+
+
+</script>
